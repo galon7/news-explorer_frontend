@@ -1,0 +1,15 @@
+.newsCard__action-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  min-width: 40px;
+  min-height: 40px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  padding-top: 5px;
+}
+
+.newsCard__action-button:hover {
+  cursor: pointer;
+}

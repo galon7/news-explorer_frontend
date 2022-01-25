@@ -1,0 +1,31 @@
+.main__title {
+  font-family: Roboto Slab, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 60px;
+  line-height: 64px;
+  color: white;
+  max-width: 608px;
+  margin: 160px auto 32px;
+}
+
+@media screen and (max-width: 882px) {
+  .main__title {
+    font-size: 36px;
+    line-height: 40px;
+    max-width: 385px;
+    margin: 104px 0 16px 163px;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .main__title {
+    margin: 104px auto 16px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .main__title {
+    margin: 86px auto 16px;
+  }
+}

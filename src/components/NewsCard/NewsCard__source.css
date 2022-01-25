@@ -1,0 +1,30 @@
+.newsCard__source {
+  position: absolute;
+  bottom: 24px;
+  margin: 0;
+  font-family: Roboto Slab, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #b6bcbf;
+}
+
+@media screen and (max-width: 1280px) {
+  .newsCard__source {
+    margin: 12px 16px 0 0;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .newsCard__source {
+    bottom: 16px;
+  }
+}

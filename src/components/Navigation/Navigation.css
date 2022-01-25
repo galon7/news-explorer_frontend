@@ -1,0 +1,28 @@
+@import url(./Navigation__item.css);
+@import url(./Navigation__button.css);
+@import url(./Navigation__burger.css);
+@import url(./Navigation_saved-news.css);
+@import url(./Navigation_saved-news.css);
+@import url(./Navigation__item-selected.css);
+@import url(./Navigation__item-selected_saved-news.css);
+@import url(./Navigation__button-text.css);
+@import url(./Navigation__button_signin.css);
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 104px 0 0;
+}
+
+@media screen and (max-width: 882px) {
+  .navigation {
+    padding: 0 40px 0 0;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .navigation {
+    padding: 0 16px 0;
+  }
+}

@@ -1,0 +1,11 @@
+.popupNavigation__item {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  margin: 0 16px;
+  top: 12px;
+}
+
+.popupNavigation__item:hover {
+  cursor: pointer;
+}

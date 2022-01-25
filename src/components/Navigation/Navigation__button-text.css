@@ -1,0 +1,9 @@
+.navigation__button-text {
+  margin: 0 22px 0 0;
+}
+
+@media screen and (max-width: 882px) {
+  .navigation__button-text {
+    margin: 0 13px 0 0;
+  }
+}

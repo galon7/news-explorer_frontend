@@ -1,0 +1,35 @@
+.footer__link {
+  padding: 0 24px;
+  text-decoration: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+}
+
+@media screen and (max-width: 882px) {
+  .footer__link {
+    padding: 0 12px;
+  }
+}
+
+@media screen and (max-width: 762px) {
+  .footer__link {
+    padding: 0 6px;
+    font-size: 10px;
+    line-height: 14px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .footer__link {
+    font-family: Roboto, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 48px;
+    padding: 0;
+  }
+}

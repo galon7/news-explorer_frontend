@@ -1,0 +1,33 @@
+.newsCardList__button {
+  min-width: 288px;
+  min-height: 64px;
+  background: white;
+  border: none;
+  border-radius: 80px;
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #1a1b22;
+  margin: 64px auto 0;
+}
+
+.newsCardList__button:hover {
+  cursor: pointer;
+  background: #e8e8e8;
+}
+
+@media screen and (max-width: 880px) {
+  .newsCardList__button {
+    margin: 32px auto 14px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .newsCardList__button {
+    min-height: 54px;
+    margin: 18px auto 0px;
+  }
+}

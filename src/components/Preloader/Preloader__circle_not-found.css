@@ -1,0 +1,6 @@
+.preloader__circle_not-found {
+  background-image: url(../../images/not-found.svg);
+  margin: auto;
+  width: 96px;
+  height: 96px;
+}

@@ -1,0 +1,11 @@
+@import url(./Preloader__circle.css);
+@import url(./Preloader__circle_not-found.css);
+@import url(./Preloader__text.css);
+@import url(./Preloader__not-found-text.css);
+
+.preloader {
+  margin: 0;
+  padding-top: 80px;
+  min-height: 202px;
+  background-color: #f5f6f7;
+}

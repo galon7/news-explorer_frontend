@@ -1,0 +1,22 @@
+@import url(./About__image.css);
+@import url(./About__details.css);
+@import url(./About__title.css);
+@import url(./About__text.css);
+
+.about {
+  display: flex;
+  padding: 80px 104px;
+}
+
+@media screen and (max-width: 882px) {
+  .about {
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .about {
+    flex-direction: column;
+    padding: 32px 16px 128px;
+  }
+}

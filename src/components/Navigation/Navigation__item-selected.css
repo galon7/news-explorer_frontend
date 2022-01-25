@@ -1,0 +1,9 @@
+.navigation__item-selected {
+  border-bottom: white solid 3px;
+}
+
+@media screen and (max-width: 882px) {
+  .navigation__item-selected {
+
+  }
+}
