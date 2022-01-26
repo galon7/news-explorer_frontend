@@ -13,9 +13,14 @@ function Footer() {
           <Link to="/" className="footer__link">
             Home
           </Link>
-          <Link to="www.practicum.com" className="footer__link">
+          <a
+            href="https://www.practicum100.org/"
+            className="footer__link"
+            target="_blank"
+            rel="noreferrer"
+          >
             Practicum by Yandex
-          </Link>
+          </a>
         </ul>
         <ul className="footer__right">
           <a
