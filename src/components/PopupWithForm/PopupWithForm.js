@@ -2,7 +2,7 @@ import React from 'react';
 import './PopupWithForm.css';
 import './PopupWithForm_open.css';
 import './PopupWithForm__registered-link.css';
-import './PopupWithForm__container_registered.css';
+import './PopupWithForm__container-registered.css';
 function PopupWithForm({
   isOpen,
   onClose,
@@ -22,7 +22,7 @@ function PopupWithForm({
   return (
     <div className={`popupWithForm ${isOpen && 'popupWithForm_open'}`}>
       <div
-        className={buttonText ? 'popupWithForm__container' : 'popupWithForm__container_registered'}
+        className={buttonText ? 'popupWithForm__container' : 'popupWithForm__container-registered'}
       >
         <button type="button" className="popupWithForm__close" onClick={onClose} />
         <h2 className="popupWithForm__title">{title}</h2>

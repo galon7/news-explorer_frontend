@@ -52,43 +52,41 @@ function App() {
   }, []);
 
   return (
-    <div className="page">
-      <div className="page__container">
-        <Header
-          onLoginClick={handleLoginClick}
-          onBurgerClick={handleBurgerClick}
-          isPopupNavigationOpen={isPopupNavigationOpen}
-          isLoggedIn={isLoggedIn}
-        />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/saved-news" element={<SavedNews />} />
-        </Routes>
-        <NewsCardList />
-        <About />
-        <Footer />
+    <div className="app">
+      <Header
+        onLoginClick={handleLoginClick}
+        onBurgerClick={handleBurgerClick}
+        isPopupNavigationOpen={isPopupNavigationOpen}
+        isLoggedIn={isLoggedIn}
+      />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/saved-news" element={<SavedNews />} />
+      </Routes>
+      <NewsCardList />
+      <About />
+      <Footer />
 
-        <PopupLogin
-          isOpen={isLoginOpen}
-          onClose={closeAllPopups}
-          openOtherPopup={handleRegisterClick}
-        />
-        <PopupRegister
-          isOpen={isRegisterOpen}
-          onClose={closeAllPopups}
-          openOtherPopup={handleLoginClick}
-        />
-        <PopupRegistered
-          isOpen={isRegisteredOpen}
-          onClose={closeAllPopups}
-          openOtherPopup={handleLoginClick}
-        />
-        <PopupNavigation
-          isOpen={isPopupNavigationOpen}
-          onClose={closeAllPopups}
-          onLoginClick={handleLoginClick}
-        />
-      </div>
+      <PopupLogin
+        isOpen={isLoginOpen}
+        onClose={closeAllPopups}
+        openOtherPopup={handleRegisterClick}
+      />
+      <PopupRegister
+        isOpen={isRegisterOpen}
+        onClose={closeAllPopups}
+        openOtherPopup={handleLoginClick}
+      />
+      <PopupRegistered
+        isOpen={isRegisteredOpen}
+        onClose={closeAllPopups}
+        openOtherPopup={handleLoginClick}
+      />
+      <PopupNavigation
+        isOpen={isPopupNavigationOpen}
+        onClose={closeAllPopups}
+        onLoginClick={handleLoginClick}
+      />
     </div>
   );
 }
