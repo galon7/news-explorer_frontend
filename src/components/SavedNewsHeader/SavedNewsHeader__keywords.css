@@ -8,7 +8,7 @@
   margin: 0;
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 590px) {
   .savedNewsHeader__keywords {
     margin: 0 0 32px;
   }

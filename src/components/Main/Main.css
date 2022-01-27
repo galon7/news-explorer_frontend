@@ -19,7 +19,7 @@
   }
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 590px) {
   .main {
     min-height: 480px;
     align-items: center;

@@ -30,7 +30,7 @@
   }
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 590px) {
   .search-form__input {
     min-height: 56px;
     min-width: 264px;

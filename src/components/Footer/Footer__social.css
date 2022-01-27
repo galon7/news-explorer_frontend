@@ -2,7 +2,7 @@
   padding-left: 24px;
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 590px) {
   .footer__social {
     font-family: Roboto, Arial, sans-serif;
     font-style: normal;

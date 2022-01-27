@@ -19,11 +19,11 @@
   transition: 0.3s;
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 590px) {
   .popupWithForm__close {
     width: 24px;
     height: 24px;
-    top: -40px;
+    top: -30px;
     right: 16px;
   }
 }

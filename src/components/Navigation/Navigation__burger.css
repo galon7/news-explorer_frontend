@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media screen and (max-width: 586px) {
+@media screen and (max-width: 590px) {
   .navigation__burger {
     display: contents;
     cursor: pointer;

@@ -5,3 +5,11 @@
   padding: 34px 36px 29px;
   position: relative;
 }
+
+@media screen and (max-width: 590px) {
+  .popupWithForm__container {
+    top: 56px;
+    padding: 16px;
+    height: 100vh;
+  }
+}
