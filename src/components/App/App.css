@@ -3,4 +3,12 @@
   flex-direction: column;
   max-width: 1440px;
   margin: 0 auto;
+  padding: 0;
+}
+
+@media screen and (max-width: 1440px) {
+  .app {
+    margin: 0;
+    max-width: 100%;
+  }
 }

@@ -1,16 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './NewsCard.css';
 import bookmark from '../../images/bookmark.svg';
+import bookmarkMarked from '../../images/bookmark_marked.svg';
+import bookmarkHover from '../../images/bookmark_hover.svg';
+import trash from '../../images/trash.svg';
+import trashHover from '../../images/trash_hover.svg';
 
 function NewsCard({ cardImage, cardDate, cardTitle, cardText, cardSource }) {
+  const [isShown, setIsShown] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const { pathname } = useLocation();
+
+  function handleBookmarked() {
+    isBookmarked ? setIsBookmarked(false) : setIsBookmarked(true);
+  }
+
   return (
     <div className="newsCard">
       <img className="newsCard__image" src={cardImage} alt={cardTitle} />
-      <div className="newsCard__category">Yellowstone</div>
-      <div className="newsCard__message">Remove from saved</div>
-      <button className="newsCard__action-button">
-        <img src={bookmark} alt="bookmark" />
-      </button>
+      {pathname !== '/' && <div className="newsCard__category">Yellowstone</div>}
+      {isShown && (
+        <div className="newsCard__message">
+          {pathname === '/' ? 'Sign in to save articles' : 'Remove from saved'}
+        </div>
+      )}
+      {pathname === '/' ? (
+        <button
+          className="newsCard__action-button"
+          onMouseEnter={() => setIsShown(true)}
+          onMouseLeave={() => setIsShown(false)}
+          onClick={handleBookmarked}
+        >
+          {isBookmarked ? (
+            <img src={bookmarkMarked} alt="bookmark" />
+          ) : (
+            <img src={isShown ? bookmarkHover : bookmark} alt="bookmark" />
+          )}
+        </button>
+      ) : (
+        <button
+          className="newsCard__action-button"
+          onMouseEnter={() => setIsShown(true)}
+          onMouseLeave={() => setIsShown(false)}
+        >
+          <img src={isShown ? trashHover : trash} alt="bookmark" />
+        </button>
+      )}
       <article className="newsCard__article">
         <p className="newsCard__date">{cardDate}</p>
         <h3 className="newsCard__title">{cardTitle}</h3>
