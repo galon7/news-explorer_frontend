@@ -8,8 +8,6 @@
 
 @media screen and (max-width: 1440px) {
   .app {
-    margin: 0;
     max-width: 100%;
-    overflow: hidden;
   }
 }

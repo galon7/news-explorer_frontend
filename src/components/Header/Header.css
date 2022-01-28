@@ -19,6 +19,7 @@
     width: 100%;
   }
 }
+
 @media screen and (max-width: 882px) {
   .header {
     height: 66px;
