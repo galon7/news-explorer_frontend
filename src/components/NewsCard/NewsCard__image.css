@@ -1,0 +1,19 @@
+.newsCard__image {
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+}
+
+@media screen and (max-width: 882px) {
+  .newsCard__image {
+    max-height: 150px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .newsCard__image {
+    max-height: 196px;
+  }
+}

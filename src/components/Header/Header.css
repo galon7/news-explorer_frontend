@@ -1,0 +1,33 @@
+@import url(./Header__title.css);
+@import url(./Header__title_saved-news.css);
+
+.header {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1440px;
+  height: 80px;
+  color: transparent;
+  z-index: 1;
+  border-bottom: 3px solid rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
+
+@media screen and (max-width: 1440px) {
+  .header {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 882px) {
+  .header {
+    height: 66px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .header {
+    height: 56px;
+  }
+}

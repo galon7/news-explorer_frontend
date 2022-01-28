@@ -1,0 +1,9 @@
+@media screen and (max-width: 590px) {
+  .popupNavigation_open {
+    visibility: visible;
+    pointer-events: auto;
+    margin: 16px 0 0;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+}

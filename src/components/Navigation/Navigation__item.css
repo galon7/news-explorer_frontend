@@ -1,0 +1,30 @@
+.navigation__item {
+  margin: 0 0 0 32px;
+  padding: 0 1.15em 25px;
+  color: white;
+  text-decoration: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+@media screen and (max-width: 882px) {
+  .navigation__item {
+    padding: 0 1.15em 20px;
+    font-size: 16px;
+    margin: 0 0 0 16px;
+  }
+}
+@media screen and (max-width: 624px) {
+  .navigation__item {
+    padding: 0 1.1em 20px;
+    margin: 0 0 0 6px;
+  }
+}
+@media screen and (max-width: 590px) {
+  .navigation__item {
+    display: none;
+  }
+}

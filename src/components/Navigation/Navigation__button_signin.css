@@ -1,0 +1,10 @@
+.navigation__button_signin {
+  min-width: 176px;
+}
+
+
+@media screen and (max-width: 882px) {
+  .navigation__button_signin {
+    min-width: 158px;
+  }
+}

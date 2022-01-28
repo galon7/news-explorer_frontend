@@ -1,0 +1,13 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media screen and (max-width: 1440px) {
+  .app {
+    max-width: 100%;
+  }
+}

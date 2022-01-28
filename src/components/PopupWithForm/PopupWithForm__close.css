@@ -1,0 +1,29 @@
+.popupWithForm__close {
+  background-image: url(../../images/close.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  position: absolute;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  top: -45px;
+  right: -45px;
+}
+
+.popupWithForm__close:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+@media screen and (max-width: 590px) {
+  .popupWithForm__close {
+    width: 24px;
+    height: 24px;
+    top: -30px;
+    right: 16px;
+  }
+}

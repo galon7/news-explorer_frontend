@@ -1,0 +1,16 @@
+.about__details {
+  margin: 51px 0 0 56px;
+  color: #1a1b22;
+}
+
+@media screen and (max-width: 882px) {
+  .about__details {
+    margin: 0 0 0 32px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .about__details {
+    margin: 0;
+  }
+}

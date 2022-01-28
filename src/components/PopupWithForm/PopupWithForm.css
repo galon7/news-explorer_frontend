@@ -1,0 +1,27 @@
+@import url(./PopupWithForm__container.css);
+@import url(./PopupWithForm__close.css);
+@import url(./PopupWithForm__title.css);
+@import url(./PopupWithForm__form.css);
+@import url(./PopupWithForm__field-title.css);
+@import url(./PopupWithForm__input.css);
+@import url(./PopupWithForm__submit-button.css);
+@import url(./PopupWithForm__option.css);
+@import url(./PopupWithForm__error-text.css);
+
+.popupWithForm {
+  width: 100%;
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s linear;
+}

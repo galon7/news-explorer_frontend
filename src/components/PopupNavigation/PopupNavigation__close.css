@@ -1,0 +1,17 @@
+.popupNavigation__close {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  align-self: flex-end;
+  border: none;
+  position: relative;
+  top: 18px;
+  right: 16px;
+  z-index: 1;
+  padding: 0;
+}
+
+.popupNavigation__close:hover {
+  cursor: pointer;
+}

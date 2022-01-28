@@ -1,0 +1,29 @@
+.navigation__button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  border: 1px solid;
+  border-radius: 100px;
+  max-width: 176px;
+  min-height: 48px;
+  padding: 0 15px;
+}
+
+.navigation__button:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 882px) {
+  .navigation__button {
+    max-width: 158px;
+    min-height: 40px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .navigation__button {
+    display: none;
+  }
+}

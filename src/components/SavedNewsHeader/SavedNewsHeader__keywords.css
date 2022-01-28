@@ -1,0 +1,15 @@
+.savedNewsHeader__keywords {
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+  margin: 0;
+}
+
+@media screen and (max-width: 590px) {
+  .savedNewsHeader__keywords {
+    margin: 0 0 32px;
+  }
+}

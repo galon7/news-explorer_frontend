@@ -1,0 +1,18 @@
+.popupWithForm__option {
+  font-family: Inter, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin: 16px 0 0;
+  color: black;
+}
+
+.popupWithForm__option .popupWithForm__link {
+  color: #2f71e5;
+}
+
+.popupWithForm__link:hover {
+  cursor: pointer;
+}

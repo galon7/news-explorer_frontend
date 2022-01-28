@@ -1,0 +1,29 @@
+.newsCardList__cards {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 16px;
+  margin: 0 104px 0;
+}
+
+@media screen and (max-width: 1350px) {
+  .newsCardList__cards {
+    margin: 0 40px 0;
+    grid-gap: 8px;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .newsCardList__cards {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .newsCardList__cards {
+    display: flex;
+    flex-direction: column;
+  }
+}

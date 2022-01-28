@@ -1,0 +1,27 @@
+.footer__copyright {
+  color: #b6bcbf;
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0;
+}
+
+@media screen and (max-width: 762px) {
+  .footer__copyright {
+    padding: 0 6px;
+    font-size: 10px;
+    line-height: 14px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .footer__copyright {
+    font-family: Roboto, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 0;
+  }
+}

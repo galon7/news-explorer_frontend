@@ -1,0 +1,24 @@
+.about__image {
+  max-block-size: 464px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 1124px) {
+  .about__image {
+    max-block-size: 320px;
+  }
+}
+
+@media screen and (max-width: 882px) {
+  .about__image {
+    max-block-size: 232px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .about__image {
+    margin: 0 auto;
+    max-width: 272px;
+    min-height: 272px;
+  }
+}

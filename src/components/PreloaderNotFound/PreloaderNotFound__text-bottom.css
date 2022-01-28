@@ -1,0 +1,12 @@
+.preloaderNotFound__text-bottom {
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  text-align: center;
+  margin: 24px auto 0;
+  padding: 0 0 80px;
+  max-width: 256px;
+}
