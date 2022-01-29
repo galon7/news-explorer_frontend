@@ -1,5 +1,6 @@
 @import url(./SearchForm__input.css);
 @import url(./SearchForm__button.css);
+@import url(./searchForm__input-empty.css);
 
 .search-form {
   display: flex;

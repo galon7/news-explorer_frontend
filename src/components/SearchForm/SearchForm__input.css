@@ -1,4 +1,4 @@
-.search-form__input {
+.searchForm__input {
   min-height: 64px;
   min-width: 584px;
   border: 1px solid #d1d2d6;
@@ -12,12 +12,12 @@
   padding-left: 24px;
 }
 
-.search-form__input:focus {
+.searchForm__input:focus {
   color: black;
 }
 
 @media screen and (max-width: 882px) {
-  .search-form__input {
+  .searchForm__input {
     min-height: 56px;
     min-width: 452px;
     margin: 0 0 0 160px;
@@ -25,13 +25,13 @@
 }
 
 @media screen and (max-width: 766px) {
-  .search-form__input {
+  .searchForm__input {
     margin: 0 auto 0;
   }
 }
 
 @media screen and (max-width: 590px) {
-  .search-form__input {
+  .searchForm__input {
     min-height: 56px;
     min-width: 264px;
     padding: 0 0 0 24px;
