@@ -19,9 +19,3 @@
     -webkit-line-clamp: 4;
   }
 }
-
-@media screen and (max-width: 882px) {
-  .newsCard__text {
-    -webkit-line-clamp: 3;
-  }
-}

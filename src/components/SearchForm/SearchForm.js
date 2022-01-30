@@ -15,14 +15,14 @@ function SearchForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!inputValue) setPlaceHolder('Please enter topic');
+    if (!inputValue) setPlaceHolder('Please enter a keyword');
   }
 
   return (
     <form className="search-form">
       <input
         className={`searchForm__input ${
-          placeHolder === 'Please enter topic' && 'searchForm__input-empty'
+          placeHolder === 'Please enter a keyword' && 'searchForm__input-empty'
         }`}
         placeholder={placeHolder}
         onChange={handleInputChange}
