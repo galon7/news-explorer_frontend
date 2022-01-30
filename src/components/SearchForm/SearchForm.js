@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm({ getSearchResults }) {
   const [inputValue, setInputValue] = useState('');
   const [placeHolder, setPlaceHolder] = useState('Enter topic');
 
@@ -16,6 +16,7 @@ function SearchForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!inputValue) setPlaceHolder('Please enter a keyword');
+    else getSearchResults(inputValue);
   }
 
   return (

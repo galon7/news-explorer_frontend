@@ -4,7 +4,7 @@ import Preloader from '../Preloader/Preloader';
 import PreloaderNotFound from '../PreloaderNotFound/PreloaderNotFound';
 import './Main.css';
 
-function Main() {
+function Main({ getSearchResults, showPreloader }) {
   return (
     <>
       <main className="main">
@@ -12,10 +12,10 @@ function Main() {
         <p className="main__text">
           Find the latest news on any topic and save them in your personal account.
         </p>
-        <SearchForm />
+        <SearchForm getSearchResults={getSearchResults} />
       </main>
-      <Preloader />
-      <PreloaderNotFound />
+      {showPreloader && <Preloader />}
+      {/* <PreloaderNotFound /> */}
     </>
   );
 }

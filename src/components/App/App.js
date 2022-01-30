@@ -20,20 +20,23 @@ function App() {
   const [isRegisteredOpen, setIsRegisteredOpen] = useState(false);
   const [isPopupNavigationOpen, setIsPopupNavigationOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(false);
   const [cards, setCards] = useState([]);
 
   const apiKey = 'ea8487c7085543179f251912d0737476';
   const from = dateRange().currentDate;
   const to = dateRange().weekAgoDate;
-  const q = 'ukraine';
   const pageSize = 100;
 
-  useEffect(() => {
-    getNewsFromApi(q, apiKey, from, to, pageSize).then((data) => {
-      setCards(data.articles);
-    });
-    // .catch((err) => console.log(`Error.....: ${err}`));
-  }, [from, to]);
+  function getSearchResults(input) {
+    setShowPreloader(true);
+    getNewsFromApi(input, apiKey, from, to, pageSize)
+      .then((data) => {
+        setCards(data.articles);
+      })
+      .catch((err) => console.log(`Error.....: ${err}`))
+      .finally(() => setShowPreloader(false));
+  }
 
   function handleLoginClick() {
     setIsLoginOpen(true);
@@ -75,7 +78,10 @@ function App() {
         isLoggedIn={isLoggedIn}
       />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route
+          path="/"
+          element={<Main getSearchResults={getSearchResults} showPreloader={showPreloader} />}
+        />
         <Route path="/saved-news" element={<SavedNews />} />
       </Routes>
       <NewsCardList searchResults={cards} />
