@@ -2,9 +2,10 @@ import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import PreloaderNotFound from '../PreloaderNotFound/PreloaderNotFound';
+import PreloaderServerError from '../PreloaderServerError/PreloaderServerError';
 import './Main.css';
 
-function Main({ getSearchResults, showPreloader, showPreloaderNF }) {
+function Main({ getSearchResults, showPreloader, showPreloaderNF, showPreloaderServerNF }) {
   return (
     <>
       <main className="main">
@@ -16,6 +17,7 @@ function Main({ getSearchResults, showPreloader, showPreloaderNF }) {
       </main>
       {showPreloader && <Preloader />}
       {showPreloaderNF && <PreloaderNotFound />}
+      {showPreloaderServerNF && <PreloaderServerError />}
     </>
   );
 }

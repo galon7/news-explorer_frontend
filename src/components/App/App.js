@@ -21,6 +21,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPreloader, setShowPreloader] = useState(false);
   const [showPreloaderNF, setShowPreloaderNF] = useState(false);
+  const [showPreloaderServerNF, setShowPreloaderServerNF] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [cards, setCards] = useState([]);
 
@@ -37,7 +38,7 @@ function App() {
         if (check) setShowPreloaderNF(true);
         else setShowSearchResults(true);
       })
-      .catch((err) => console.log(`Error.....: ${err}`));
+      .catch(() => setShowPreloaderServerNF(true));
   }
 
   function handleLoginClick() {
@@ -88,6 +89,7 @@ function App() {
               getSearchResults={getSearchResults}
               showPreloader={showPreloader}
               showPreloaderNF={showPreloaderNF}
+              showPreloaderServerNF={showPreloaderServerNF}
             />
           }
         />
