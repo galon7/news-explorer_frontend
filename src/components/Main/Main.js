@@ -4,7 +4,7 @@ import Preloader from '../Preloader/Preloader';
 import PreloaderNotFound from '../PreloaderNotFound/PreloaderNotFound';
 import './Main.css';
 
-function Main({ getSearchResults, showPreloader }) {
+function Main({ getSearchResults, showPreloader, showPreloaderNF }) {
   return (
     <>
       <main className="main">
@@ -15,7 +15,7 @@ function Main({ getSearchResults, showPreloader }) {
         <SearchForm getSearchResults={getSearchResults} />
       </main>
       {showPreloader && <Preloader />}
-      {/* <PreloaderNotFound /> */}
+      {showPreloaderNF && <PreloaderNotFound />}
     </>
   );
 }

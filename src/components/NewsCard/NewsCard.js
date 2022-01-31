@@ -7,7 +7,7 @@ import bookmarkHover from '../../images/bookmark_hover.svg';
 import trash from '../../images/trash.svg';
 import trashHover from '../../images/trash_hover.svg';
 
-function NewsCard({ cardImage, cardDate, cardTitle, cardText, cardSource }) {
+function NewsCard({ cardImage, cardDate, cardTitle, cardText, cardSource, url }) {
   const [isShown, setIsShown] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const { pathname } = useLocation();
@@ -47,7 +47,7 @@ function NewsCard({ cardImage, cardDate, cardTitle, cardText, cardSource }) {
           <img src={isShown ? trashHover : trash} alt="bookmark" />
         </button>
       )}
-      <article className="newsCard__article">
+      <article className="newsCard__article" onClick={() => window.open(url, '_blank')}>
         <p className="newsCard__date">{cardDate}</p>
         <h3 className="newsCard__title">{cardTitle}</h3>
         <p className="newsCard__text">{cardText}</p>

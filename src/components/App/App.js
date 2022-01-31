@@ -21,6 +21,8 @@ function App() {
   const [isPopupNavigationOpen, setIsPopupNavigationOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPreloader, setShowPreloader] = useState(false);
+  const [showPreloaderNF, setShowPreloaderNF] = useState(false);
+  const [showSearchResults, setShowSearchResults] = useState(false);
   const [cards, setCards] = useState([]);
 
   const apiKey = 'ea8487c7085543179f251912d0737476';
@@ -29,13 +31,20 @@ function App() {
   const pageSize = 100;
 
   function getSearchResults(input) {
+    setShowSearchResults(false);
     setShowPreloader(true);
     getNewsFromApi(input, apiKey, from, to, pageSize)
       .then((data) => {
-        setCards(data.articles);
+        console.log(data.articles);
+        if (data.articles.length !== 0) setCards(data.articles);
+        else return 'no articles';
       })
-      .catch((err) => console.log(`Error.....: ${err}`))
-      .finally(() => setShowPreloader(false));
+      .then((check) => {
+        setShowPreloader(false);
+        if (check) setShowPreloaderNF(true);
+        else setShowSearchResults(true);
+      })
+      .catch((err) => console.log(`Error.....: ${err}`));
   }
 
   function handleLoginClick() {
@@ -57,6 +66,7 @@ function App() {
     setIsRegisteredOpen(false);
     setIsPopupNavigationOpen(false);
   }
+
   useEffect(() => {
     const closeByEscape = (e) => {
       if (e.key === 'Escape') {
@@ -80,11 +90,17 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Main getSearchResults={getSearchResults} showPreloader={showPreloader} />}
+          element={
+            <Main
+              getSearchResults={getSearchResults}
+              showPreloader={showPreloader}
+              showPreloaderNF={showPreloaderNF}
+            />
+          }
         />
         <Route path="/saved-news" element={<SavedNews />} />
       </Routes>
-      <NewsCardList searchResults={cards} />
+      {showSearchResults && <NewsCardList searchResults={cards} />}
       <About />
       <Footer />
 
