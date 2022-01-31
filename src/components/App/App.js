@@ -10,8 +10,7 @@ import PopupLogin from '../PopupLogin/PopupLogin';
 import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupRegistered from '../PopupRegistered/PopupRegistered';
 import PopupNavigation from '../PopupNavigation/PopupNavigation';
-import { getNewsFromApi } from '../../utils/NewsApi';
-import { dateRange } from '../../utils/FormatDate';
+import { getNewsFromApi, apiKey, from, to, pageSize } from '../../utils/NewsApi';
 import './App.css';
 
 function App() {
@@ -25,17 +24,11 @@ function App() {
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [cards, setCards] = useState([]);
 
-  const apiKey = 'ea8487c7085543179f251912d0737476';
-  const from = dateRange().currentDate;
-  const to = dateRange().weekAgoDate;
-  const pageSize = 100;
-
   function getSearchResults(input) {
     setShowSearchResults(false);
     setShowPreloader(true);
     getNewsFromApi(input, apiKey, from, to, pageSize)
       .then((data) => {
-        console.log(data.articles);
         if (data.articles.length !== 0) setCards(data.articles);
         else return 'no articles';
       })

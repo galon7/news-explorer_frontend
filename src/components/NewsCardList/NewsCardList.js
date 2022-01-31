@@ -5,22 +5,18 @@ import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
 function NewsCardList({ searchResults }) {
-  const [threeResults, setThreeResults] = useState(searchResults.slice(0, 3));
+  const [cardIndex, setCardIndex] = useState(3);
   const { pathname } = useLocation();
-  let threeFrom = 3;
 
-  function addThreeResults() {
-    console.log(threeResults);
-    setThreeResults(searchResults.slice(threeFrom, threeFrom + 3));
-    threeFrom = threeFrom + 3;
+  function updateIndex() {
+    setCardIndex(cardIndex + 3);
   }
 
   return (
     <section className="newsCardList">
       {pathname === '/' && <h2 className="newsCardList__title">Search results</h2>}
-
       <section className="newsCardList__cards">
-        {threeResults.map((card, i) => (
+        {searchResults.slice(0, cardIndex).map((card, i) => (
           <NewsCard
             key={i}
             cardImage={card.urlToImage}
@@ -32,8 +28,8 @@ function NewsCardList({ searchResults }) {
           />
         ))}
       </section>
-      {pathname === '/' && (
-        <button className="newsCardList__button" onClick={addThreeResults}>
+      {pathname === '/' && cardIndex < searchResults.length && (
+        <button className="newsCardList__button" onClick={updateIndex}>
           Show more
         </button>
       )}
