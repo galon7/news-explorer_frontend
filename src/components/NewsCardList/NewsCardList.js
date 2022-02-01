@@ -4,7 +4,7 @@ import { convertDate } from '../../utils/FormatDate';
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ searchResults }) {
+function NewsCardList({ searchResults, isLoggedIn }) {
   const [cardIndex, setCardIndex] = useState(3);
   const { pathname } = useLocation();
 
@@ -25,6 +25,7 @@ function NewsCardList({ searchResults }) {
             cardText={card.description}
             cardSource={card.source.name}
             url={card.url}
+            isLoggedIn={isLoggedIn}
           />
         ))}
       </section>

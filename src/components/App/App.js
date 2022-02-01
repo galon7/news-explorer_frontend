@@ -23,20 +23,28 @@ function App() {
   const [showPreloaderNF, setShowPreloaderNF] = useState(false);
   const [showPreloaderServerNF, setShowPreloaderServerNF] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(JSON.parse(localStorage.getItem('searchedCards')));
+
+  useEffect(() => {
+    if (cards) setShowSearchResults(true);
+  }, [cards]);
 
   function getSearchResults(input) {
     setShowSearchResults(false);
     setShowPreloader(true);
     getNewsFromApi(input, apiKey, from, to, pageSize)
       .then((data) => {
-        if (data.articles.length !== 0) setCards(data.articles);
-        else return 'no articles';
+        if (data.articles.length !== 0) {
+          setCards(data.articles);
+          localStorage.setItem('searchedCards', JSON.stringify(data.articles));
+        } else return 'no articles';
       })
-      .then((check) => {
+      .then((checkArticles) => {
         setShowPreloader(false);
-        if (check) setShowPreloaderNF(true);
-        else setShowSearchResults(true);
+        if (checkArticles) {
+          localStorage.removeItem('searchedCards');
+          setShowPreloaderNF(true);
+        } else setShowSearchResults(true);
       })
       .catch(() => setShowPreloaderServerNF(true));
   }
@@ -95,7 +103,7 @@ function App() {
         />
         <Route path="/saved-news" element={<SavedNews />} />
       </Routes>
-      {showSearchResults && <NewsCardList searchResults={cards} />}
+      {showSearchResults && <NewsCardList searchResults={cards} isLoggedIn={isLoggedIn} />}
       <About />
       <Footer />
 
