@@ -12,6 +12,7 @@ function PopupWithForm({
   name,
   onSubmit,
   buttonText,
+  buttonActive,
   linkText,
 }) {
   function handleLinkClick() {
@@ -29,7 +30,12 @@ function PopupWithForm({
         <form action="#" onSubmit={onSubmit} className="popupWithForm__form" name={`${name}-form`}>
           {children}
           {buttonText && (
-            <button type="submit" className="popupWithForm__submit-button">
+            <button
+              type="submit"
+              className={`popupWithForm__submit-button ${
+                buttonActive && 'popupWithForm__submit-button_active'
+              }`}
+            >
               {buttonText}
             </button>
           )}
