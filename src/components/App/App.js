@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import NewsCardList from '../NewsCardList/NewsCardList';
@@ -11,6 +11,7 @@ import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupRegistered from '../PopupRegistered/PopupRegistered';
 import PopupNavigation from '../PopupNavigation/PopupNavigation';
 import { getNewsFromApi, apiKey, from, to, pageSize } from '../../utils/NewsApi';
+import { register } from '../../utils/MainApi';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
   const [showPreloaderServerNF, setShowPreloaderServerNF] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [cards, setCards] = useState(JSON.parse(localStorage.getItem('searchedCards')));
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (cards) setShowSearchResults(true);
@@ -81,6 +83,20 @@ function App() {
     return () => document.removeEventListener('keydown', closeByEscape);
   }, []);
 
+  function handleRegister(user) {
+    register(user.username, user.email, user.password)
+      .then(() => {
+        setIsRegisteredOpen(true);
+        setIsRegisterOpen(false);
+        // navigate('/signin');
+      })
+      .catch((err) => {
+        console.log(`Error.....: ${err}`);
+        setIsRegisteredOpen(false);
+      });
+    // .finally(openTooltip);
+  }
+
   return (
     <div className="app">
       <Header
@@ -116,6 +132,7 @@ function App() {
         isOpen={isRegisterOpen}
         onClose={closeAllPopups}
         openOtherPopup={handleLoginClick}
+        handleRegister={handleRegister}
       />
       <PopupRegistered
         isOpen={isRegisteredOpen}

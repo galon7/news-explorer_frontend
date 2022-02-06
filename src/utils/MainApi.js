@@ -1,4 +1,4 @@
-const baseUrl = 'https://api.gnews.students.nomoreparties.sbs';
+const BASE_URL = 'https://api.gnews.students.nomoreparties.sbs';
 
 function getResponseData(res) {
   if (!res.ok) {
@@ -7,14 +7,25 @@ function getResponseData(res) {
   return res.json();
 }
 
+export function register(name, email, password) {
+  return fetch(`${BASE_URL}/signup`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name, password, email }),
+  }).then(getResponseData);
+}
+
 export function changeSavedCardStatus(articleId, isSaved) {
   if (isSaved) {
-    return fetch(`${baseUrl}/articles`, {
+    return fetch(`${BASE_URL}/articles`, {
       method: 'POST',
       // headers: this._headers,
     }).then(getResponseData);
   } else {
-    return fetch(`${baseUrl}/articles/${articleId}`, {
+    return fetch(`${BASE_URL}/articles/${articleId}`, {
       method: 'DELETE',
       // headers: this._headers,
     }).then(getResponseData);
