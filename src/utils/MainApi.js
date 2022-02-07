@@ -18,6 +18,34 @@ export function register(name, email, password) {
   }).then(getResponseData);
 }
 
+export function login(password, email) {
+  return fetch(`${BASE_URL}/signin`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  }).then(getResponseData);
+}
+
+export function checkToken(token) {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(getResponseData);
+}
+
+export function getUserInfo() {
+  return fetch(`${this._baseUrl}/users/me`, {
+    headers: this._headers,
+  }).then(this._getResponseData);
+}
+
 export function changeSavedCardStatus(articleId, isSaved) {
   if (isSaved) {
     return fetch(`${BASE_URL}/articles`, {

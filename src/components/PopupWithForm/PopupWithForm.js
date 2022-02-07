@@ -14,6 +14,7 @@ function PopupWithForm({
   buttonText,
   buttonActive,
   linkText,
+  serverErrorMessage,
 }) {
   function handleLinkClick() {
     onClose();
@@ -29,6 +30,9 @@ function PopupWithForm({
         <h2 className="popupWithForm__title">{title}</h2>
         <form action="#" onSubmit={onSubmit} className="popupWithForm__form" name={`${name}-form`}>
           {children}
+          <p className="popupWithForm__error-text popupWithForm__server-error-text">
+            {serverErrorMessage}
+          </p>
           {buttonText && (
             <button
               type="submit"
@@ -40,6 +44,7 @@ function PopupWithForm({
             </button>
           )}
         </form>
+
         {buttonText ? (
           <p className="popupWithForm__option">
             or{' '}

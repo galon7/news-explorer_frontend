@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import NewsCardList from '../NewsCardList/NewsCardList';
@@ -11,10 +12,12 @@ import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupRegistered from '../PopupRegistered/PopupRegistered';
 import PopupNavigation from '../PopupNavigation/PopupNavigation';
 import { getNewsFromApi, apiKey, from, to, pageSize } from '../../utils/NewsApi';
-import { register } from '../../utils/MainApi';
+import { register, login, checkToken } from '../../utils/MainApi';
 import './App.css';
 
 function App() {
+  const [jwt, setJwt] = useState(localStorage.getItem('token'));
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isRegisteredOpen, setIsRegisteredOpen] = useState(false);
@@ -25,7 +28,21 @@ function App() {
   const [showPreloaderServerNF, setShowPreloaderServerNF] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [cards, setCards] = useState(JSON.parse(localStorage.getItem('searchedCards')));
+  const [serverErrorMessage, setServerErrorMessage] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (jwt) {
+      checkToken(jwt)
+        .then((data) => {
+          if (data) {
+            setCurrentUser(data);
+            setIsLoggedIn(true);
+          }
+        })
+        .catch((err) => console.log(`Error.....: ${err}`));
+    }
+  }, [jwt]);
 
   useEffect(() => {
     if (cards) setShowSearchResults(true);
@@ -53,7 +70,6 @@ function App() {
 
   function handleLoginClick() {
     setIsLoginOpen(true);
-    setIsLoggedIn(true);
   }
 
   function handleRegisterClick() {
@@ -88,63 +104,78 @@ function App() {
       .then(() => {
         setIsRegisteredOpen(true);
         setIsRegisterOpen(false);
-        // navigate('/signin');
       })
       .catch((err) => {
-        console.log(`Error.....: ${err}`);
-        setIsRegisteredOpen(false);
+        setServerErrorMessage(err.toString());
       });
-    // .finally(openTooltip);
+  }
+
+  function handleSignIn(user) {
+    login(user.password, user.email)
+      .then((data) => {
+        setJwt(data.token);
+        localStorage.setItem('token', data.token);
+        setIsLoggedIn(true);
+        navigate('/');
+      })
+      .catch((err) => setServerErrorMessage(err.toString()));
   }
 
   return (
-    <div className="app">
-      <Header
-        onLoginClick={handleLoginClick}
-        onBurgerClick={handleBurgerClick}
-        isPopupNavigationOpen={isPopupNavigationOpen}
-        isLoggedIn={isLoggedIn}
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Main
-              getSearchResults={getSearchResults}
-              showPreloader={showPreloader}
-              showPreloaderNF={showPreloaderNF}
-              showPreloaderServerNF={showPreloaderServerNF}
-            />
-          }
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="app">
+        <Header
+          onLoginClick={handleLoginClick}
+          onBurgerClick={handleBurgerClick}
+          isPopupNavigationOpen={isPopupNavigationOpen}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setJwt={setJwt}
         />
-        <Route path="/saved-news" element={<SavedNews />} />
-      </Routes>
-      {showSearchResults && <NewsCardList searchResults={cards} isLoggedIn={isLoggedIn} />}
-      <About />
-      <Footer />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                getSearchResults={getSearchResults}
+                showPreloader={showPreloader}
+                showPreloaderNF={showPreloaderNF}
+                showPreloaderServerNF={showPreloaderServerNF}
+              />
+            }
+          />
+          <Route path="/saved-news" element={<SavedNews />} />
+        </Routes>
+        {showSearchResults && <NewsCardList searchResults={cards} isLoggedIn={isLoggedIn} />}
+        <About />
+        <Footer />
 
-      <PopupLogin
-        isOpen={isLoginOpen}
-        onClose={closeAllPopups}
-        openOtherPopup={handleRegisterClick}
-      />
-      <PopupRegister
-        isOpen={isRegisterOpen}
-        onClose={closeAllPopups}
-        openOtherPopup={handleLoginClick}
-        handleRegister={handleRegister}
-      />
-      <PopupRegistered
-        isOpen={isRegisteredOpen}
-        onClose={closeAllPopups}
-        openOtherPopup={handleLoginClick}
-      />
-      <PopupNavigation
-        isOpen={isPopupNavigationOpen}
-        onClose={closeAllPopups}
-        onLoginClick={handleLoginClick}
-      />
-    </div>
+        <PopupLogin
+          isOpen={isLoginOpen}
+          onClose={closeAllPopups}
+          openOtherPopup={handleRegisterClick}
+          handleSignIn={handleSignIn}
+          serverErrorMessage={serverErrorMessage}
+        />
+        <PopupRegister
+          isOpen={isRegisterOpen}
+          onClose={closeAllPopups}
+          openOtherPopup={handleLoginClick}
+          handleRegister={handleRegister}
+          serverErrorMessage={serverErrorMessage}
+        />
+        <PopupRegistered
+          isOpen={isRegisteredOpen}
+          onClose={closeAllPopups}
+          openOtherPopup={handleLoginClick}
+        />
+        <PopupNavigation
+          isOpen={isPopupNavigationOpen}
+          onClose={closeAllPopups}
+          onLoginClick={handleLoginClick}
+        />
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

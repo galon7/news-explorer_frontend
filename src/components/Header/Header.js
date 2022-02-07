@@ -4,7 +4,14 @@ import Navigation from '../Navigation/Navigation';
 import './Header.css';
 import './Header_saved-news.css';
 
-function Header({ onLoginClick, onBurgerClick, isPopupNavigationOpen, isLoggedIn }) {
+function Header({
+  onLoginClick,
+  onBurgerClick,
+  isPopupNavigationOpen,
+  isLoggedIn,
+  setIsLoggedIn,
+  setJwt,
+}) {
   const { pathname } = useLocation();
   return (
     <header className={`header ${pathname === '/saved-news' && 'header_saved-news'}`}>
@@ -16,6 +23,8 @@ function Header({ onLoginClick, onBurgerClick, isPopupNavigationOpen, isLoggedIn
         onBurgerClick={onBurgerClick}
         isPopupNavigationOpen={isPopupNavigationOpen}
         isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        setJwt={setJwt}
       />
     </header>
   );

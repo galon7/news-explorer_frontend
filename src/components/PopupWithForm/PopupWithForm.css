@@ -8,6 +8,7 @@
 @import url(./PopupWithForm__submit-button_active.css);
 @import url(./PopupWithForm__option.css);
 @import url(./PopupWithForm__error-text.css);
+@import url(./PopupWithForm__server-error-text.css);
 
 .popupWithForm {
   width: 100%;

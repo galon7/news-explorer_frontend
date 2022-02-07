@@ -2,7 +2,7 @@ import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { useFormWithValidation } from '../../utils/FormValidations';
 
-function PopupRegister({ isOpen, onClose, openOtherPopup, handleRegister }) {
+function PopupRegister({ isOpen, onClose, openOtherPopup, handleRegister, serverErrorMessage }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation();
 
   function handleRegisterSubmit(e) {
@@ -21,6 +21,7 @@ function PopupRegister({ isOpen, onClose, openOtherPopup, handleRegister }) {
       openOtherPopup={openOtherPopup}
       linkText="Sign in"
       onSubmit={handleRegisterSubmit}
+      serverErrorMessage={serverErrorMessage}
     >
       <p className="popupWithForm__field-title">Email</p>
       <input

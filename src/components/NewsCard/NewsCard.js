@@ -28,7 +28,7 @@ function NewsCard({ cardImage, cardDate, cardTitle, cardText, cardSource, url, i
       {pathname === '/' ? (
         <button
           className="newsCard__action-button"
-          onMouseEnter={() => setIsShown(true)}
+          onMouseEnter={() => !isLoggedIn && setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
           onClick={isLoggedIn ? handleBookmarked : () => {}}
         >

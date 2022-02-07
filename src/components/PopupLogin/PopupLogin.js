@@ -2,8 +2,14 @@ import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { useFormWithValidation } from '../../utils/FormValidations';
 
-function PopupLogin({ isOpen, onClose, openOtherPopup }) {
+function PopupLogin({ isOpen, onClose, openOtherPopup, handleSignIn, serverErrorMessage }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation();
+
+  function handleSignInSubmit(e) {
+    e.preventDefault();
+    handleSignIn(values);
+    onClose();
+  }
 
   return (
     <PopupWithForm
@@ -15,6 +21,8 @@ function PopupLogin({ isOpen, onClose, openOtherPopup }) {
       buttonActive={isValid}
       openOtherPopup={openOtherPopup}
       linkText="Sign up"
+      onSubmit={handleSignInSubmit}
+      serverErrorMessage={serverErrorMessage}
     >
       <p className="popupWithForm__field-title">Email</p>
       <input
