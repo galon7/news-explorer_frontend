@@ -16,7 +16,9 @@ function SearchForm({ getSearchResults }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!inputValue) setPlaceHolder('Please enter a keyword');
-    else getSearchResults(inputValue);
+    else {
+      getSearchResults(inputValue);
+    }
   }
 
   return (

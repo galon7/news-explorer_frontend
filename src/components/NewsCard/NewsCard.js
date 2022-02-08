@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './NewsCard.css';
 import bookmark from '../../images/bookmark.svg';
 import bookmarkMarked from '../../images/bookmark_marked.svg';
@@ -7,13 +8,38 @@ import bookmarkHover from '../../images/bookmark_hover.svg';
 import trash from '../../images/trash.svg';
 import trashHover from '../../images/trash_hover.svg';
 
-function NewsCard({ cardImage, cardDate, cardTitle, cardText, cardSource, url, isLoggedIn }) {
+function NewsCard({
+  cardImage,
+  cardDate,
+  cardTitle,
+  cardText,
+  cardSource,
+  url,
+  isLoggedIn,
+  handleSaveBookmark,
+  keyword,
+}) {
   const [isShown, setIsShown] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const { pathname } = useLocation();
+  const currentUser = React.useContext(CurrentUserContext);
+
+  function saveBookmark() {
+    setIsBookmarked(true);
+    const newsCard = {};
+    newsCard.keyword = keyword;
+    newsCard.title = cardTitle;
+    newsCard.text = cardText;
+    newsCard.date = cardDate;
+    newsCard.source = cardSource;
+    newsCard.link = url;
+    newsCard.image = cardImage;
+    newsCard.owner = currentUser._id;
+    handleSaveBookmark(newsCard);
+  }
 
   function handleBookmarked() {
-    isBookmarked ? setIsBookmarked(false) : setIsBookmarked(true);
+    isBookmarked ? setIsBookmarked(false) : saveBookmark();
   }
 
   return (

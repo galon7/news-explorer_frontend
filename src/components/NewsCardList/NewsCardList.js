@@ -4,10 +4,9 @@ import { convertDate } from '../../utils/FormatDate';
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ searchResults, isLoggedIn }) {
+function NewsCardList({ searchResults, isLoggedIn, handleSaveBookmark }) {
   const [cardIndex, setCardIndex] = useState(3);
   const { pathname } = useLocation();
-
   function updateIndex() {
     setCardIndex(cardIndex + 3);
   }
@@ -19,6 +18,7 @@ function NewsCardList({ searchResults, isLoggedIn }) {
         {searchResults.slice(0, cardIndex).map((card, i) => (
           <NewsCard
             key={i}
+            keyword={card.keyword}
             cardImage={card.urlToImage}
             cardDate={convertDate(card.publishedAt)}
             cardTitle={card.title}
@@ -26,6 +26,7 @@ function NewsCardList({ searchResults, isLoggedIn }) {
             cardSource={card.source.name}
             url={card.url}
             isLoggedIn={isLoggedIn}
+            handleSaveBookmark={handleSaveBookmark}
           />
         ))}
       </section>

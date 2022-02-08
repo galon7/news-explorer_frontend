@@ -46,16 +46,18 @@ export function getUserInfo() {
   }).then(this._getResponseData);
 }
 
-export function changeSavedCardStatus(articleId, isSaved) {
-  if (isSaved) {
+export function changeSavedCardStatus(article, isSaved, header) {
+  console.log(article, isSaved, header);
+  if (!isSaved) {
     return fetch(`${BASE_URL}/articles`, {
       method: 'POST',
-      // headers: this._headers,
+      headers: header,
+      body: JSON.stringify(article),
     }).then(getResponseData);
   } else {
-    return fetch(`${BASE_URL}/articles/${articleId}`, {
+    return fetch(`${BASE_URL}/articles/${article}`, {
       method: 'DELETE',
-      // headers: this._headers,
+      headers: header,
     }).then(getResponseData);
   }
 }

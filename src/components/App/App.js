@@ -12,7 +12,7 @@ import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupRegistered from '../PopupRegistered/PopupRegistered';
 import PopupNavigation from '../PopupNavigation/PopupNavigation';
 import { getNewsFromApi, apiKey, from, to, pageSize } from '../../utils/NewsApi';
-import { register, login, checkToken } from '../../utils/MainApi';
+import { register, login, checkToken, changeSavedCardStatus } from '../../utils/MainApi';
 import './App.css';
 
 function App() {
@@ -30,6 +30,7 @@ function App() {
   const [cards, setCards] = useState(JSON.parse(localStorage.getItem('searchedCards')));
   const [serverErrorMessage, setServerErrorMessage] = useState('');
   const navigate = useNavigate();
+  const requestHeader = { Authorization: `Bearer ${jwt}`, 'Content-Type': 'application/json' };
 
   useEffect(() => {
     if (jwt) {
@@ -52,6 +53,10 @@ function App() {
     setShowSearchResults(false);
     setShowPreloader(true);
     getNewsFromApi(input, apiKey, from, to, pageSize)
+      .then((data) => {
+        data.articles.map((card) => (card.keyword = input));
+        return data;
+      })
       .then((data) => {
         if (data.articles.length !== 0) {
           setCards(data.articles);
@@ -98,6 +103,12 @@ function App() {
 
     return () => document.removeEventListener('keydown', closeByEscape);
   }, []);
+
+  function handleSaveBookmark(newsCard) {
+    changeSavedCardStatus(newsCard, false, requestHeader).then((data) => {
+      console.log(data);
+    });
+  }
 
   function handleRegister(user) {
     register(user.username, user.email, user.password)
@@ -146,7 +157,13 @@ function App() {
           />
           <Route path="/saved-news" element={<SavedNews />} />
         </Routes>
-        {showSearchResults && <NewsCardList searchResults={cards} isLoggedIn={isLoggedIn} />}
+        {showSearchResults && (
+          <NewsCardList
+            searchResults={cards}
+            isLoggedIn={isLoggedIn}
+            handleSaveBookmark={handleSaveBookmark}
+          />
+        )}
         <About />
         <Footer />
 
