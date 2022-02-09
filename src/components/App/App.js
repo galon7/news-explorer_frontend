@@ -54,7 +54,7 @@ function App() {
   }, [jwt]);
 
   useEffect(() => {
-    if (savedArticles.length === 0) {
+    if (isLoggedIn && savedArticles.length === 0) {
       getArticles(requestHeader)
         .then((data) => {
           setSavedArticles(data);
@@ -64,8 +64,8 @@ function App() {
   });
 
   useEffect(() => {
-    if (cards) setShowSearchResults(true);
-  }, [cards]);
+    if (cards && isLoggedIn) setShowSearchResults(true);
+  }, [isLoggedIn, cards]);
 
   function getSearchResults(input) {
     setShowSearchResults(false);
@@ -123,6 +123,7 @@ function App() {
   }, []);
 
   function handleRegister(user) {
+    setServerErrorMessage('');
     register(user.username, user.email, user.password)
       .then(() => {
         setIsRegisteredOpen(true);
@@ -134,6 +135,7 @@ function App() {
   }
 
   function handleSignIn(user) {
+    setServerErrorMessage('');
     login(user.password, user.email)
       .then((data) => {
         setJwt(data.token);
@@ -141,7 +143,11 @@ function App() {
         setIsLoggedIn(true);
         navigate('/');
       })
-      .catch((err) => setServerErrorMessage(err.toString()));
+      .catch((err) =>
+        err === 'Error: 401'
+          ? setServerErrorMessage("User doesn't exist")
+          : setServerErrorMessage(err.toString())
+      );
   }
 
   function handleSaveBookmark(newsCard) {

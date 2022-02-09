@@ -43,19 +43,17 @@ function SavedNewsHeader({ savedArticles }) {
     const keywordsSecond = calculateHighest();
     const keywordsThird = calculateHighest();
 
-    const remaining = Object.keys(countKeywords).length;
+    const remaining = Object.keys(countKeywords).length + 1;
 
     return { keywordsFirst, keywordsSecond, keywordsThird, remaining };
   }
 
-  const byKeywordsFirstText = `${getKeywords().keywordsFirst}`;
+  const byKeywordsFirstText = getKeywords().keywordsFirst && `${getKeywords().keywordsFirst}`;
   const byKeywordsSecondText = getKeywords().keywordsSecond && `, ${getKeywords().keywordsSecond}`;
-  const byKeywordsThirdText = `, and ${getKeywords().remaining} other`;
-
-  // if (!keywordsSecond) return '';
-  //   else if (keywordsThird && remaining === 0) return `and ${getKeywords().keywordsThird}`;
-  //   return `, and ${getKeywords().remaining} other`;
-  // }
+  const byKeywordsThirdText =
+    getKeywords().keywordsThird && getKeywords().remaining === 1
+      ? `, and ${getKeywords().keywordsThird}`
+      : `, and ${getKeywords().remaining} other`;
 
   return (
     <section className="savedNewsHeader">
@@ -68,7 +66,7 @@ function SavedNewsHeader({ savedArticles }) {
         <span className="savedNewsHeader__keyword">
           {byKeywordsFirstText}
           {byKeywordsSecondText}
-          {getKeywords().keywordsThird ? byKeywordsThirdText : 'hello'}
+          {getKeywords().keywordsThird ? byKeywordsThirdText : ''}
         </span>
       </p>
     </section>
