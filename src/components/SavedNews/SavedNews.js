@@ -1,10 +1,10 @@
 import React from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 
-function SavedNews() {
+function SavedNews({ articles }) {
   return (
     <section className="savedNews">
-      <SavedNewsHeader />
+      <SavedNewsHeader savedArticles={articles} />
     </section>
   );
 }

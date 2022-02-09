@@ -4,7 +4,13 @@ import { convertDate } from '../../utils/FormatDate';
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ searchResults, isLoggedIn, handleSaveBookmark }) {
+function NewsCardList({
+  searchResults,
+  isLoggedIn,
+  handleSaveBookmark,
+  handleDeleteBookmark,
+  bookmarkedCardId,
+}) {
   const [cardIndex, setCardIndex] = useState(3);
   const { pathname } = useLocation();
   function updateIndex() {
@@ -27,6 +33,8 @@ function NewsCardList({ searchResults, isLoggedIn, handleSaveBookmark }) {
             url={card.url}
             isLoggedIn={isLoggedIn}
             handleSaveBookmark={handleSaveBookmark}
+            handleDeleteBookmark={handleDeleteBookmark}
+            bookmarkedCardId={bookmarkedCardId}
           />
         ))}
       </section>

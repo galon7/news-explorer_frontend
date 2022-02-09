@@ -17,7 +17,9 @@ function NewsCard({
   url,
   isLoggedIn,
   handleSaveBookmark,
+  handleDeleteBookmark,
   keyword,
+  bookmarkedCardId,
 }) {
   const [isShown, setIsShown] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -38,8 +40,13 @@ function NewsCard({
     handleSaveBookmark(newsCard);
   }
 
+  function deleteBookmark() {
+    setIsBookmarked(false);
+    handleDeleteBookmark(bookmarkedCardId);
+  }
+
   function handleBookmarked() {
-    isBookmarked ? setIsBookmarked(false) : saveBookmark();
+    isBookmarked ? deleteBookmark() : saveBookmark();
   }
 
   return (

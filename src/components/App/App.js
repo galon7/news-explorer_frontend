@@ -12,7 +12,13 @@ import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupRegistered from '../PopupRegistered/PopupRegistered';
 import PopupNavigation from '../PopupNavigation/PopupNavigation';
 import { getNewsFromApi, apiKey, from, to, pageSize } from '../../utils/NewsApi';
-import { register, login, checkToken, changeSavedCardStatus } from '../../utils/MainApi';
+import {
+  register,
+  login,
+  checkToken,
+  getArticles,
+  changeSavedCardStatus,
+} from '../../utils/MainApi';
 import './App.css';
 
 function App() {
@@ -28,6 +34,8 @@ function App() {
   const [showPreloaderServerNF, setShowPreloaderServerNF] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [cards, setCards] = useState(JSON.parse(localStorage.getItem('searchedCards')));
+  const [bookmarkedCardId, setIsBookmarkedCardId] = useState('');
+  const [savedArticles, setSavedArticles] = useState([]);
   const [serverErrorMessage, setServerErrorMessage] = useState('');
   const navigate = useNavigate();
   const requestHeader = { Authorization: `Bearer ${jwt}`, 'Content-Type': 'application/json' };
@@ -44,6 +52,16 @@ function App() {
         .catch((err) => console.log(`Error.....: ${err}`));
     }
   }, [jwt]);
+
+  useEffect(() => {
+    if (savedArticles.length === 0) {
+      getArticles(requestHeader)
+        .then((data) => {
+          setSavedArticles(data);
+        })
+        .catch((err) => console.log(`Error.....: ${err}`));
+    }
+  });
 
   useEffect(() => {
     if (cards) setShowSearchResults(true);
@@ -104,12 +122,6 @@ function App() {
     return () => document.removeEventListener('keydown', closeByEscape);
   }, []);
 
-  function handleSaveBookmark(newsCard) {
-    changeSavedCardStatus(newsCard, false, requestHeader).then((data) => {
-      console.log(data);
-    });
-  }
-
   function handleRegister(user) {
     register(user.username, user.email, user.password)
       .then(() => {
@@ -130,6 +142,20 @@ function App() {
         navigate('/');
       })
       .catch((err) => setServerErrorMessage(err.toString()));
+  }
+
+  function handleSaveBookmark(newsCard) {
+    changeSavedCardStatus(newsCard, false, requestHeader)
+      .then((data) => {
+        setIsBookmarkedCardId(data._id);
+      })
+      .catch((err) => console.log(`Error.....: ${err}`));
+  }
+
+  function handleDeleteBookmark(bookmarkedCardId) {
+    changeSavedCardStatus(bookmarkedCardId, true, requestHeader).catch((err) =>
+      console.log(`Error.....: ${err}`)
+    );
   }
 
   return (
@@ -155,13 +181,15 @@ function App() {
               />
             }
           />
-          <Route path="/saved-news" element={<SavedNews />} />
+          <Route path="/saved-news" element={<SavedNews articles={savedArticles} />} />
         </Routes>
         {showSearchResults && (
           <NewsCardList
             searchResults={cards}
             isLoggedIn={isLoggedIn}
             handleSaveBookmark={handleSaveBookmark}
+            handleDeleteBookmark={handleDeleteBookmark}
+            bookmarkedCardId={bookmarkedCardId}
           />
         )}
         <About />

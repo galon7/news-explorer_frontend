@@ -40,14 +40,13 @@ export function checkToken(token) {
   }).then(getResponseData);
 }
 
-export function getUserInfo() {
-  return fetch(`${this._baseUrl}/users/me`, {
-    headers: this._headers,
-  }).then(this._getResponseData);
+export function getArticles(header) {
+  return fetch(`${BASE_URL}/articles`, {
+    headers: header,
+  }).then(getResponseData);
 }
 
 export function changeSavedCardStatus(article, isSaved, header) {
-  console.log(article, isSaved, header);
   if (!isSaved) {
     return fetch(`${BASE_URL}/articles`, {
       method: 'POST',
