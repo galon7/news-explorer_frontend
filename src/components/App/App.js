@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -37,6 +37,7 @@ function App() {
   const [bookmarkedCardId, setIsBookmarkedCardId] = useState('');
   const [savedArticles, setSavedArticles] = useState([]);
   const [serverErrorMessage, setServerErrorMessage] = useState('');
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const requestHeader = { Authorization: `Bearer ${jwt}`, 'Content-Type': 'application/json' };
 
@@ -187,9 +188,20 @@ function App() {
               />
             }
           />
-          <Route path="/saved-news" element={<SavedNews articles={savedArticles} />} />
+          <Route
+            path="/saved-news"
+            element={
+              <SavedNews
+                articles={savedArticles}
+                isLoggedIn={isLoggedIn}
+                handleSaveBookmark={handleSaveBookmark}
+                handleDeleteBookmark={handleDeleteBookmark}
+                bookmarkedCardId={bookmarkedCardId}
+              />
+            }
+          />
         </Routes>
-        {showSearchResults && (
+        {showSearchResults && pathname === '/' && (
           <NewsCardList
             searchResults={cards}
             isLoggedIn={isLoggedIn}

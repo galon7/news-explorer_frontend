@@ -13,6 +13,7 @@ function NewsCardList({
 }) {
   const [cardIndex, setCardIndex] = useState(3);
   const { pathname } = useLocation();
+
   function updateIndex() {
     setCardIndex(cardIndex + 3);
   }
@@ -21,22 +22,25 @@ function NewsCardList({
     <section className="newsCardList">
       {pathname === '/' && <h2 className="newsCardList__title">Search results</h2>}
       <section className="newsCardList__cards">
-        {searchResults.slice(0, cardIndex).map((card, i) => (
-          <NewsCard
-            key={i}
-            keyword={card.keyword}
-            cardImage={card.urlToImage}
-            cardDate={convertDate(card.publishedAt)}
-            cardTitle={card.title}
-            cardText={card.description}
-            cardSource={card.source.name}
-            url={card.url}
-            isLoggedIn={isLoggedIn}
-            handleSaveBookmark={handleSaveBookmark}
-            handleDeleteBookmark={handleDeleteBookmark}
-            bookmarkedCardId={bookmarkedCardId}
-          />
-        ))}
+        {searchResults
+          .slice(0, pathname === '/' ? cardIndex : searchResults.length)
+          .map((card, i) => (
+            <NewsCard
+              key={i}
+              keyword={card.keyword}
+              cardImage={pathname === '/' ? card.urlToImage : card.image}
+              cardDate={pathname === '/' ? convertDate(card.publishedAt) : card.date}
+              cardTitle={card.title}
+              cardText={pathname === '/' ? card.description : card.text}
+              // cardSource={card.source.name}
+              cardSource={pathname === '/' ? card.source.name : card.source.name}
+              url={pathname === '/' ? card.url : card.link}
+              isLoggedIn={isLoggedIn}
+              handleSaveBookmark={handleSaveBookmark}
+              handleDeleteBookmark={handleDeleteBookmark}
+              bookmarkedCardId={bookmarkedCardId}
+            />
+          ))}
       </section>
       {pathname === '/' && cardIndex < searchResults.length && (
         <button className="newsCardList__button" onClick={updateIndex}>

@@ -41,6 +41,7 @@ function NewsCard({
   }
 
   function deleteBookmark() {
+    console.log(bookmarkedCardId);
     setIsBookmarked(false);
     handleDeleteBookmark(bookmarkedCardId);
   }
@@ -49,10 +50,14 @@ function NewsCard({
     isBookmarked ? deleteBookmark() : saveBookmark();
   }
 
+  function handleBookmarkClick() {
+    if (isLoggedIn) handleBookmarked();
+  }
+
   return (
     <div className="newsCard">
       <img className="newsCard__image" src={cardImage} alt={cardTitle} />
-      {pathname !== '/' && <div className="newsCard__category">Yellowstone</div>}
+      {pathname !== '/' && <div className="newsCard__category">{keyword}</div>}
       {isShown && (
         <div className="newsCard__message">
           {pathname === '/' ? 'Sign in to save articles' : 'Remove from saved'}
@@ -63,7 +68,7 @@ function NewsCard({
           className="newsCard__action-button"
           onMouseEnter={() => !isLoggedIn && setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
-          onClick={isLoggedIn ? handleBookmarked : () => {}}
+          onClick={handleBookmarkClick}
         >
           {isBookmarked ? (
             <img src={bookmarkMarked} alt="bookmark" />
@@ -76,6 +81,7 @@ function NewsCard({
           className="newsCard__action-button"
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
+          onClick={deleteBookmark}
         >
           <img src={isShown ? trashHover : trash} alt="bookmark" />
         </button>

@@ -5,14 +5,6 @@ import './SavedNewsHeader.css';
 function SavedNewsHeader({ savedArticles }) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  function getNumberOfArticles() {
-    let count = 0;
-    savedArticles.forEach((article) => {
-      if (article.owner === currentUser._id) count++;
-    });
-    return count;
-  }
-
   function getKeywords() {
     const countKeywords = savedArticles.reduce((acc, item) => {
       if (item.owner !== currentUser._id) {
@@ -27,8 +19,6 @@ function SavedNewsHeader({ savedArticles }) {
 
       return acc;
     }, {});
-
-    console.log(countKeywords);
 
     function calculateHighest() {
       const highest = Math.max(...Object.values(countKeywords));
@@ -59,7 +49,7 @@ function SavedNewsHeader({ savedArticles }) {
     <section className="savedNewsHeader">
       <h1 className="savedNewsHeader__title">Saved articles</h1>
       <h2 className="savedNewsHeader__subtitle">
-        {currentUser.name}, you have {getNumberOfArticles()} saved articles
+        {currentUser.name}, you have {savedArticles.length} saved articles
       </h2>
       <p className="savedNewsHeader__keywords">
         By keywords:{' '}
