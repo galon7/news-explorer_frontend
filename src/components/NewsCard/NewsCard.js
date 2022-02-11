@@ -41,7 +41,6 @@ function NewsCard({
   }
 
   function deleteBookmark() {
-    console.log(bookmarkedCardId);
     setIsBookmarked(false);
     handleDeleteBookmark(bookmarkedCardId);
   }
@@ -81,7 +80,7 @@ function NewsCard({
           className="newsCard__action-button"
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
-          onClick={deleteBookmark}
+          // onClick={}
         >
           <img src={isShown ? trashHover : trash} alt="bookmark" />
         </button>

@@ -1,7 +1,12 @@
 export function dateRange() {
+  const formatDate = (date) => {
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  };
   const date = new Date();
-  const currentDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-  const weekAgoDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() - 7}`;
+  const currentDate = formatDate(date);
+  const weekAgo = new Date(date);
+  weekAgo.setDate(weekAgo.getDate() - 7);
+  const weekAgoDate = formatDate(weekAgo);
   return { currentDate, weekAgoDate };
 }
 

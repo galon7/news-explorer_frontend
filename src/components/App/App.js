@@ -12,6 +12,7 @@ import PopupRegister from '../PopupRegister/PopupRegister';
 import PopupRegistered from '../PopupRegistered/PopupRegistered';
 import PopupNavigation from '../PopupNavigation/PopupNavigation';
 import { getNewsFromApi, apiKey, from, to, pageSize } from '../../utils/NewsApi';
+import ProtectedRoute from '../ProtectedRoute';
 import {
   register,
   login,
@@ -191,13 +192,15 @@ function App() {
           <Route
             path="/saved-news"
             element={
-              <SavedNews
-                articles={savedArticles}
-                isLoggedIn={isLoggedIn}
-                handleSaveBookmark={handleSaveBookmark}
-                handleDeleteBookmark={handleDeleteBookmark}
-                bookmarkedCardId={bookmarkedCardId}
-              />
+              <ProtectedRoute setIsLoginOpen={setIsLoginOpen}>
+                <SavedNews
+                  articles={savedArticles}
+                  isLoggedIn={isLoggedIn}
+                  handleSaveBookmark={handleSaveBookmark}
+                  handleDeleteBookmark={handleDeleteBookmark}
+                  bookmarkedCardId={bookmarkedCardId}
+                />
+              </ProtectedRoute>
             }
           />
         </Routes>
