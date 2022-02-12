@@ -80,7 +80,7 @@ function NewsCard({
           className="newsCard__action-button"
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
-          // onClick={}
+          onClick={deleteBookmark}
         >
           <img src={isShown ? trashHover : trash} alt="bookmark" />
         </button>

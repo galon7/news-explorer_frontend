@@ -156,14 +156,17 @@ function App() {
     changeSavedCardStatus(newsCard, false, requestHeader)
       .then((data) => {
         setIsBookmarkedCardId(data._id);
+        setSavedArticles([...savedArticles, data]);
       })
       .catch((err) => console.log(`Error.....: ${err}`));
   }
 
   function handleDeleteBookmark(bookmarkedCardId) {
-    changeSavedCardStatus(bookmarkedCardId, true, requestHeader).catch((err) =>
-      console.log(`Error.....: ${err}`)
-    );
+    changeSavedCardStatus(bookmarkedCardId, true, requestHeader)
+      .then((data) => {
+        setSavedArticles(savedArticles.filter((item) => item._id !== data._id));
+      })
+      .catch((err) => console.log(`Error.....: ${err}`));
   }
 
   return (
@@ -198,7 +201,6 @@ function App() {
                   isLoggedIn={isLoggedIn}
                   handleSaveBookmark={handleSaveBookmark}
                   handleDeleteBookmark={handleDeleteBookmark}
-                  bookmarkedCardId={bookmarkedCardId}
                 />
               </ProtectedRoute>
             }
