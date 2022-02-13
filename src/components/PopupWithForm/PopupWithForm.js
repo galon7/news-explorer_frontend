@@ -28,7 +28,7 @@ function PopupWithForm({
       >
         <button type="button" className="popupWithForm__close" onClick={onClose} />
         <h2 className="popupWithForm__title">{title}</h2>
-        <form action="#" onSubmit={onSubmit} className="popupWithForm__form" name={`${name}-form`}>
+        <form onSubmit={onSubmit} className="popupWithForm__form" name={`${name}-form`}>
           {children}
           <p className="popupWithForm__error-text popupWithForm__server-error-text">
             {serverErrorMessage}

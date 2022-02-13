@@ -1,6 +1,6 @@
 const BASE_URL = 'https://api.gnews.students.nomoreparties.sbs';
 
-function getResponseData(res) {
+export function getResponseData(res) {
   if (!res.ok) {
     return Promise.reject(`Error: ${res.status}`);
   }

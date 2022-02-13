@@ -35,7 +35,7 @@ function App() {
   const [showPreloaderServerNF, setShowPreloaderServerNF] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [cards, setCards] = useState(JSON.parse(localStorage.getItem('searchedCards')));
-  const [bookmarkedCardId, setIsBookmarkedCardId] = useState('');
+  const [bookmarkedCardId, setBookmarkedCardId] = useState('');
   const [savedArticles, setSavedArticles] = useState([]);
   const [serverErrorMessage, setServerErrorMessage] = useState('');
   const { pathname } = useLocation();
@@ -66,8 +66,8 @@ function App() {
   });
 
   useEffect(() => {
-    if (cards && isLoggedIn) setShowSearchResults(true);
-  }, [isLoggedIn, cards]);
+    if (cards) setShowSearchResults(true);
+  }, [cards]);
 
   function getSearchResults(input) {
     setShowSearchResults(false);
@@ -155,7 +155,7 @@ function App() {
   function handleSaveBookmark(newsCard) {
     changeSavedCardStatus(newsCard, false, requestHeader)
       .then((data) => {
-        setIsBookmarkedCardId(data._id);
+        setBookmarkedCardId(data._id);
         setSavedArticles([...savedArticles, data]);
       })
       .catch((err) => console.log(`Error.....: ${err}`));

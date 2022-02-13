@@ -19,6 +19,7 @@ function NewsCard({
   handleSaveBookmark,
   handleDeleteBookmark,
   keyword,
+  articleCardId,
   bookmarkedCardId,
 }) {
   const [isShown, setIsShown] = useState(false);
@@ -37,12 +38,13 @@ function NewsCard({
     newsCard.link = url;
     newsCard.image = cardImage;
     newsCard.owner = currentUser._id;
+    newsCard._id = articleCardId ? articleCardId : bookmarkedCardId;
     handleSaveBookmark(newsCard);
   }
 
   function deleteBookmark() {
     setIsBookmarked(false);
-    handleDeleteBookmark(bookmarkedCardId);
+    handleDeleteBookmark(articleCardId ? articleCardId : bookmarkedCardId);
   }
 
   function handleBookmarked() {
@@ -51,6 +53,14 @@ function NewsCard({
 
   function handleBookmarkClick() {
     if (isLoggedIn) handleBookmarked();
+  }
+
+  function handleMouseEnter() {
+    pathname === '/' && isLoggedIn ? setIsShown(false) : setIsShown(true);
+  }
+
+  function handleMouseLeave() {
+    setIsShown(false);
   }
 
   return (
@@ -65,8 +75,8 @@ function NewsCard({
       {pathname === '/' ? (
         <button
           className="newsCard__action-button"
-          onMouseEnter={() => !isLoggedIn && setIsShown(true)}
-          onMouseLeave={() => setIsShown(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           onClick={handleBookmarkClick}
         >
           {isBookmarked ? (
@@ -78,8 +88,8 @@ function NewsCard({
       ) : (
         <button
           className="newsCard__action-button"
-          onMouseEnter={() => setIsShown(true)}
-          onMouseLeave={() => setIsShown(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           onClick={deleteBookmark}
         >
           <img src={isShown ? trashHover : trash} alt="bookmark" />

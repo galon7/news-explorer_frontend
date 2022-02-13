@@ -28,14 +28,14 @@ function PopupRegister({ isOpen, onClose, openOtherPopup, handleRegister, server
         type="email"
         name="email"
         className="popupWithForm__input"
-        id="email-input"
+        id="email-input-register"
         placeholder="Enter email"
         minLength={3}
         required
         onChange={handleChange}
         value={values.email}
       />
-      <span id="email-input-error" className="popupWithForm__error-text">
+      <span id="email-input-register-error" className="popupWithForm__error-text">
         {errors.email}
       </span>
       <p className="popupWithForm__field-title">Password</p>
@@ -43,14 +43,14 @@ function PopupRegister({ isOpen, onClose, openOtherPopup, handleRegister, server
         type="password"
         name="password"
         className="popupWithForm__input"
-        id="password-input"
+        id="password-input-register"
         placeholder="Enter password"
         minLength={4}
         required
         onChange={handleChange}
         value={values.password}
       />
-      <span id="password-input-error" className="popupWithForm__error-text">
+      <span id="password-input-register-error" className="popupWithForm__error-text">
         {errors.password}
       </span>
       <p className="popupWithForm__field-title">Username</p>
