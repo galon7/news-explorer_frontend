@@ -1,5 +1,3 @@
-# news-explorer-frontend
-
 # Final project - ![NewsExplorer](./src/images/newsExplorer.png) News explorer frontend
 
 ## [This is a website](https://gnews.students.nomoreparties.sbs/) for finding news stories and storing them.
