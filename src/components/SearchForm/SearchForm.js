@@ -22,7 +22,7 @@ function SearchForm({ getSearchResults }) {
   }
 
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={handleSubmit}>
       <input
         className={`searchForm__input ${
           placeHolder === 'Please enter a keyword' && 'searchForm__input-empty'
@@ -32,7 +32,7 @@ function SearchForm({ getSearchResults }) {
         value={inputValue}
         onFocus={resetPlaceHolder}
       />
-      <button type="submit" className="search-form__button" onClick={handleSubmit}>
+      <button type="submit" className="search-form__button">
         Search
       </button>
     </form>
