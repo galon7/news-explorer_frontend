@@ -13,3 +13,17 @@
 .newsCard__action-button:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 882px) {
+  .newsCard__action-button {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .newsCard__action-button {
+    top: 16px;
+    right: 16px;
+  }
+}

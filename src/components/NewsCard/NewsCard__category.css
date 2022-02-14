@@ -21,3 +21,17 @@
   line-height: 24px;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 882px) {
+  .newsCard__category {
+    top: 8px;
+    left: 8px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .newsCard__category {
+    top: 16px;
+    left: 16px;
+  }
+}

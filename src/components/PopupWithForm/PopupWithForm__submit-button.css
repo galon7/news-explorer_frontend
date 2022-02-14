@@ -1,7 +1,7 @@
 .popupWithForm__submit-button {
   min-width: 100%;
   min-height: 64px;
-  margin: 39px 0 0;
+  margin: 10px 0 0;
   padding: 0;
   color: #b6bcbf;
   background-color: #e6e8eb;
@@ -13,10 +13,4 @@
   text-align: center;
   border: none;
   border-radius: 100px;
-}
-
-.popupWithForm__submit-button:hover {
-  opacity: 0.8;
-  transition: 0.3s;
-  cursor: pointer;
 }

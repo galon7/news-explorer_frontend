@@ -12,7 +12,9 @@ function PopupWithForm({
   name,
   onSubmit,
   buttonText,
+  buttonActive,
   linkText,
+  serverErrorMessage,
 }) {
   function handleLinkClick() {
     onClose();
@@ -26,14 +28,23 @@ function PopupWithForm({
       >
         <button type="button" className="popupWithForm__close" onClick={onClose} />
         <h2 className="popupWithForm__title">{title}</h2>
-        <form action="#" onSubmit={onSubmit} className="popupWithForm__form" name={`${name}-form`}>
+        <form onSubmit={onSubmit} className="popupWithForm__form" name={`${name}-form`}>
           {children}
+          <p className="popupWithForm__error-text popupWithForm__server-error-text">
+            {serverErrorMessage}
+          </p>
           {buttonText && (
-            <button type="submit" className="popupWithForm__submit-button">
+            <button
+              type="submit"
+              className={`popupWithForm__submit-button ${
+                buttonActive && 'popupWithForm__submit-button_active'
+              }`}
+            >
               {buttonText}
             </button>
           )}
         </form>
+
         {buttonText ? (
           <p className="popupWithForm__option">
             or{' '}

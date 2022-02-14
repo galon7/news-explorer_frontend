@@ -2,9 +2,16 @@ import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import PreloaderNotFound from '../PreloaderNotFound/PreloaderNotFound';
+import PreloaderServerError from '../PreloaderServerError/PreloaderServerError';
 import './Main.css';
 
-function Main() {
+function Main({
+  getSearchResults,
+  showPreloader,
+  showPreloaderNF,
+  showPreloaderServerNF,
+  setKeyword,
+}) {
   return (
     <>
       <main className="main">
@@ -12,10 +19,11 @@ function Main() {
         <p className="main__text">
           Find the latest news on any topic and save them in your personal account.
         </p>
-        <SearchForm />
+        <SearchForm getSearchResults={getSearchResults} setKeyword={setKeyword} />
       </main>
-      <Preloader />
-      <PreloaderNotFound />
+      {showPreloader && <Preloader />}
+      {showPreloaderNF && <PreloaderNotFound />}
+      {showPreloaderServerNF && <PreloaderServerError />}
     </>
   );
 }
