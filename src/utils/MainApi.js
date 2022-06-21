@@ -1,4 +1,4 @@
-const BASE_URL = 'https://news-explorer-api-galon7.vercel.app/';
+const BASE_URL = 'https://news-explorer-api-sand.vercel.app/';
 
 export function getResponseData(res) {
   if (!res.ok) {
