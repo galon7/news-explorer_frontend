@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.gnews.students.nomoreparties.sbs';
+const BASE_URL = 'https://news-explorer-api-galon7.vercel.app/';
 
 export function getResponseData(res) {
   if (!res.ok) {
