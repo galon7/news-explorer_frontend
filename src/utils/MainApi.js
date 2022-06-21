@@ -13,6 +13,7 @@ export function register(name, email, password) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      { key: "Access-Control-Allow-Origin", value: "*" }
     },
     body: JSON.stringify({ name, password, email }),
   }).then(getResponseData);
