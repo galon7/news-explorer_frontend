@@ -7,7 +7,7 @@ import facebook from '../../images/facebook.svg';
 function Footer() {
   return (
     <footer className="footer">
-      <small className="footer__copyright">&copy; 2021 Supersite, Powered by News API</small>
+      <small className="footer__copyright">&copy; 2022 Supersite, Powered by News API</small>
       <div className="footer__links">
         <ul className="footer__left">
           <Link to="/" className="footer__link">
